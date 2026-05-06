@@ -9,6 +9,7 @@ const __dirname = process.cwd();
 
 // Importaciones
 import { fileURLToPath } from 'url';
+import path from 'path';
 
 // Obtiene la ruta del archivo en el que está parado actualmente (con el archivo incluído)
 const __filename = fileURLToPath(import.meta.url);
