@@ -1,0 +1,18 @@
+# --- Parámetros --- 
+
+# Host
+@host=http://127.0.0.1
+
+# Puerto, le paso el valor del puerto en el archivo .env con dotenv
+@port={{$dotenv PORT}}
+
+# --- Llamados a la API --- 
+
+### Llamado al endpoint /health
+GET {{host}}:{{port}}/health
+
+### Llamado a endpoint inexistente
+GET {{host}}:{{port}}/health-v1
+
+### Llamado a la ruta principal
+GET {{host}}:{{port}}/
