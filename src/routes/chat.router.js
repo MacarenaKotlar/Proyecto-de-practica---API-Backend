@@ -8,4 +8,5 @@ const router = Router();
 // Request POST para enviar un prompt al chat y recibir una respuesta
 router.post("/chat", chatController);
 
+// Exporta el router con el nombre definido después del "as"
 export {router as chatRouter};
