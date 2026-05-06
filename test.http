@@ -16,3 +16,16 @@ GET {{host}}:{{port}}/health-v1
 
 ### Llamado a la ruta principal
 GET {{host}}:{{port}}/
+
+### Llamado a la pokeapi (capa de proxy)
+GET {{host}}:{{port}}/proxy/pokemon/pokemon
+
+### Llamado al chat mi api
+# "Content-Type: application/json": Define el tipo de contenido a pasarle (en este caso json)
+# "{"prompt": "stub"}": El cuerpo de la request, envía un prompt con "stub" como contenido
+POST {{host}}:{{port}}/api/v1/chat
+Content-Type: application/json
+
+{
+    "prompt": "stub"
+}
