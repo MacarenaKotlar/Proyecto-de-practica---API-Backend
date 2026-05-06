@@ -20,12 +20,28 @@ GET {{host}}:{{port}}/
 ### Llamado a la pokeapi (capa de proxy)
 GET {{host}}:{{port}}/proxy/pokemon/pokemon
 
-### Llamado al chat mi api
+### Llamado al chat de mi api - Agregar un chat al historial del usuario 1
 # "Content-Type: application/json": Define el tipo de contenido a pasarle (en este caso json)
-# "{"prompt": "stub"}": El cuerpo de la request, envía un prompt con "stub" como contenido
+# "{"user": {"userId": "user_1", "prompt": "stub"}}": El cuerpo de la request
 POST {{host}}:{{port}}/api/v1/chat
 Content-Type: application/json
 
 {
-    "prompt": "stub"
+    "user": {"userId": "user_1", "prompt": "stub"}
+}
+
+### Llamado al historial del chat del usuario 1
+GET {{host}}:{{port}}/api/v1/history
+Content-Type: application/json
+
+{
+    "user": {"userId": "user_1"}
+}
+
+### Borrar un char del historial del usuario 1
+DELETE {{host}}:{{port}}/api/v1/history/c2_u1
+Content-Type: application/json
+
+{
+    "user": {"userId": "user_1"}
 }
