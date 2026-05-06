@@ -6,6 +6,7 @@ import path from 'path';
 import {__joiner} from './src/utils/path.js';
 import { proxyRouter } from './src/routes/proxy.router.js';
 import { chatRouter } from './src/routes/chat.router.js';
+import { historyRouter } from './src/routes/history.router.js';
 
 // Se crea la app
 const app = express();
@@ -14,6 +15,9 @@ const app = express();
 
 // Se define el tipo de Morgan a usar (common)
 const morganType = ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]';
+
+// Guardo la url de la api en una constante
+const apiUrl = "/api/v1";
 
 /*
     app.use: Se usa para definir funciones middleware en la ruta indicada.
@@ -55,8 +59,11 @@ app.get("/health", (request, response) => {
 // Llamo al proxy
 app.use("/proxy", proxyRouter);
 
+// Llamo al historial del chat de mi api
+app.use(apiUrl, historyRouter);
+
 // Llamo al chat de mi api
-app.use("/api/v1", chatRouter);
+app.use(apiUrl, chatRouter);
 
 // Request con USE para lanzar un error al entrar a cualquier endpoint inexistente
 // DEBE DEFINIRSE COMO ÚLTIMA REQUEST DEBIDO AL FACTOR SECUENCIAL DE USE
