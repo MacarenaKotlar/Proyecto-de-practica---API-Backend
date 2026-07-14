@@ -13,12 +13,14 @@ export const pokemonProxy = async (request, response) => {
         // Obtiene el json de la respuesta
         const data = await res.json();
 
+        // Como respuesta, envía un estado 200 (OK) y la data
         response
             .status(200)
             .json({data});
         
         return
     } catch (error) {
+        // En caso de que ocurra un error, como respuesta, envía un estado 501 (Not Implemented) y el mensaje de error
         response
             .status(501)
             .json({errorMessage: error.message});
