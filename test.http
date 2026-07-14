@@ -45,3 +45,11 @@ Content-Type: application/json
 {
     "user": {"userId": "user_1"}
 }
+
+### Borrar un chat que no existe del historial del usuario 1
+DELETE {{host}}:{{port}}/api/v1/history/123
+Content-Type: application/json
+
+{
+    "user": {"userId": "user_1"}
+}
