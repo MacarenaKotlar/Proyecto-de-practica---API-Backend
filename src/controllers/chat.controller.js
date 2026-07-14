@@ -20,8 +20,10 @@ export const chatController = async (request, response) => {
     // Parseo data para que pueda devolver la respuesta correctamente
     const geminiApi = await JSON.parse(data);
 
+    // Llama a la función que importa de file.repository.js y le pasa por parámetro el usuario, el prompt, la respuesta correspondiente al prompt y las fuentes
     await createOneChat(userId, prompt, geminiApi[prompt], ['pagina12.v5']);
 
+    // Como respuesta, envía un estado 200 (OK) y la respuesta al prompt enviado
     response
         .status(200)
         .json(
