@@ -78,13 +78,18 @@ const deleteOneChat = async (userId, chatId) => {
     // Guarda la información que trae la función readAllChatHisotry() y la guarda en "data"
     const data = await readAllChatHisotry();
 
-    // Filtra todos los chats del usuario pasado por parámetros, para excluir el chat con el id pasado por parámetros
-    data[userId] = data[userId].filter(chat => chat.id !== chatId);
-    
-    // Sobreescribe el archivo con la constante "data" sin el chat que se quiere borrar
-    await writeBackToFile(data);
+    // Obtengo el chat que quiero borrar para devolverlo
+    const deletedChat = data[userId].filter(chat => chat.id === chatId)[0];
 
-    return;
+    if(deletedChat){
+        // Filtra todos los chats del usuario pasado por parámetros, para excluir el chat con el id pasado por parámetros
+        data[userId] = data[userId].filter(chat => chat.id !== chatId);
+        
+        // Sobreescribe el archivo con la constante "data" sin el chat que se quiere borrar
+        await writeBackToFile(data);
+    }
+
+    return deletedChat;
 }
 
 // Borra todos los chats de un usuario según el id de usuario pasado por parámetros
